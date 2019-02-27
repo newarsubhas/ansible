@@ -1,0 +1,26 @@
+--- - hosts: local
+  connection: local
+  gather_facts: False
+  vars:
+    instance_ids:
+      - 'i-08ca3608d111f82f1'
+      - 'i-0cefcd353a49f199f'
+      - 'i-0d5ea15a2a54eb1f4'        
+    security_group: webservers_sg
+    image: ami-0080e4c5bc078760e
+    keypair: subash
+    region: us-east-1
+    count: 1
+  vars_files:
+    - aws_keys.yml
+  tasks:
+    - name: Stop EC2 Instance
+      ec2:
+        aws_access_key: "{{ aws_access_key }}"
+        aws_secret_key: "{{ aws_secret_key }}"
+        group: "{{ security_group }}"
+        instance_ids: '{{ instance_ids }}'
+        wait: true
+        region: "{{ region }}"
+        state: stopped
+      register: ec2
