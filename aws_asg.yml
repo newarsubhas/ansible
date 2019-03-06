@@ -34,13 +34,13 @@
       ec2_asg:
         name: "wepapp_asg"
      #   load_balancers: [ 'lb1', 'lb2' ]
-        availability_zones: [ 'us-east-1d', 'us-east-1b' ]
+        availability_zones: [ 'us-east-1d', 'us-east-1a' ]
         launch_config_name: "{{ lc_result.name }}"
         min_size: 1
         max_size: 2
         desired_capacity: 1
         state: present
-        vpc_zone_identifier: [ 'subnet-170d265d', 'subnet-2cfc674b' ]
+        vpc_zone_identifier: [ 'subnet-047df4e5a90e4b1fa', 'subnet-0e6c18abeeb692391' ]
         health_check_type: EC2
         health_check_period: 300
         tags:
